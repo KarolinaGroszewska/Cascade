@@ -6,12 +6,19 @@
 //
 
 import SwiftUI
+import FirebaseCore
 
 @main
 struct CascadeApp: App {
+    @StateObject private var firebaseManager = FirebaseManager.shared
+    
     var body: some Scene {
         WindowGroup {
-            ContentView()
+            if firebaseManager.isLoggedIn {
+                HomeView()
+            } else {
+                LoginView()
+            }
         }
     }
 }
